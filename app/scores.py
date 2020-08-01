@@ -1,5 +1,8 @@
+import pickle
+
+
 class Scores:
-    def __init__(self, num_high_scores=10, filename="high_scores.txt"):
+    def __init__(self, num_high_scores=10, filename="high_scores.dat"):
         self.__high_scores = []
 
         self.__num_high_scores = num_high_scores
@@ -7,10 +10,18 @@ class Scores:
         self.__high_scores_filename = filename
 
     def __enter__(self):
-        pass
+        try:
+            with open(self.__high_scores_filename, 'rb') as f:
+                self.__high_scores = pickle.load(f)
+        except FileNotFoundError:
+            pass
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        try:
+            with open(self.__high_scores_filename, 'wb') as f:
+                pickle.dump(self.__high_scores, f)
+        except OSError:
+            pass
 
     @property
     def high_scores(self):

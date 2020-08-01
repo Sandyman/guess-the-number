@@ -178,3 +178,5 @@ dmypy.json
 
 # JOE backup files
 *~
+
+high_scores.dat
