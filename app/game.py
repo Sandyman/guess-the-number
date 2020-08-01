@@ -12,6 +12,13 @@ class Game:
         guess = input("What's your guess? ")
         guess = int(guess)
 
+        if guess == secret_number:
+            print("You win!")
+        elif guess < secret_number:
+            print("Oops. Your guess is too low! You lose!")
+        else:
+            print("Oops. Your guess is too high! You lose!")
+
 
 if __name__ == '__main__':
     game = Game()
