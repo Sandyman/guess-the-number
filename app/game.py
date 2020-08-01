@@ -11,6 +11,10 @@ class Game:
 
         while True:
             guess = input("What's your guess? ")
+            if guess[0].lower() == 'q':
+                print("Thanks for playing. Bye!")
+                exit(0)
+
             guess = int(guess)
 
             if guess == secret_number:
