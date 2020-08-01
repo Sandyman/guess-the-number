@@ -3,7 +3,7 @@ import random
 
 class Game:
     def __init__(self):
-        self.score = 0
+        self.score = 1000
 
     def play(self):
         print("*** Guess the number! ***")
@@ -20,12 +20,14 @@ class Game:
             guess = int(guess)
 
             if guess == secret_number:
-                print("You win!")
+                print("You win! Your score is {}.".format(self.score))
                 break
             elif guess < secret_number:
                 print("Oops. Your guess is too low! You lose!")
             else:
                 print("Oops. Your guess is too high! You lose!")
+
+            self.score = self.score // 2  # Only allow integer scores
 
 
 if __name__ == '__main__':
