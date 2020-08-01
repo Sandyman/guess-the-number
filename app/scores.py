@@ -3,10 +3,14 @@ import pickle
 
 class Scores:
     def __init__(self, num_high_scores=10, filename="high_scores.dat"):
+
+        # A list to hold the actual high scores as (name, score)-tuples
         self.__high_scores = []
 
+        # Maximum number of high scores to store
         self.__num_high_scores = num_high_scores
 
+        # Filename of high scores file
         self.__high_scores_filename = filename
 
     def __enter__(self):
