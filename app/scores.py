@@ -36,3 +36,11 @@ class Scores:
         else:
             self.__high_scores.insert(insert_at[0], (name, score))
             self.__high_scores = self.__high_scores[:self.__num_high_scores]
+
+    def print_high_scores(self):
+        """
+        Convenience method that prints the high scores as a list.
+        """
+        print("*** HIGH SCORES ***")
+        for name, score in self.__high_scores:
+            print("{} : {}".format(name, score))

@@ -43,10 +43,12 @@ class Game:
                     name = input("What's your name? ")
                     name = name[:3].upper()
                     scores.store_high_score(self.score, name[:3].upper())
-                    print("Congratulions, {}!".format(name))
+                    scores.print_high_scores()
                 break
+
             elif guess < secret_number:
                 print("Oops. Your guess is too low! You lose!")
+
             else:
                 print("Oops. Your guess is too high! You lose!")
 
