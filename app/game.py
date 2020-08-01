@@ -1,5 +1,6 @@
 import random
 import time
+from scores import Scores
 
 
 class Game:
@@ -17,7 +18,7 @@ class Game:
         self.score -= now - self.time  # Subtract time penalty from score
         self.time = now
 
-    def play(self):
+    def play(self, scores):
         print("*** Guess the number! ***")
 
         # Create a random secret number between 1 and 100 (inclusive)
@@ -37,6 +38,12 @@ class Game:
 
             if guess == secret_number:
                 print("You win! Your score is {}.".format(self.score))
+                if scores.is_high_score(self.score):
+                    print("*** High score! ***")
+                    name = input("What's your name? ")
+                    name = name[:3].upper()
+                    scores.store_high_score(self.score, name[:3].upper())
+                    print("Congratulions, {}!".format(name))
                 break
             elif guess < secret_number:
                 print("Oops. Your guess is too low! You lose!")
@@ -47,5 +54,7 @@ class Game:
 
 
 if __name__ == '__main__':
+    scores = Scores()
+
     game = Game()
-    game.play()
+    game.play(scores)
