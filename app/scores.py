@@ -35,7 +35,8 @@ class Scores:
             self.__high_scores.append((name, score))
         else:
             self.__high_scores.insert(insert_at[0], (name, score))
-            self.__high_scores = self.__high_scores[:self.__num_high_scores]
+
+        self.__high_scores = self.__high_scores[:self.__num_high_scores]
 
     def print_high_scores(self):
         """

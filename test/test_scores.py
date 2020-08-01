@@ -60,6 +60,19 @@ class MyTestCase(unittest.TestCase):
 
         self.assertLessEqual(len(self.scores.high_scores), 3)
 
+    def test_score_that_is_too_low_should_not_be_stored(self):
+        _scores = [
+            ("ABC", 500),
+            ("DEF", 750),
+            ("ZYX", 400),
+            ("GHI", 300),
+        ]
+
+        for name, score in _scores:
+            self.scores.store_high_score(score, name)
+
+        self.assertLessEqual(len(self.scores.high_scores), 3)
+
 
 if __name__ == '__main__':
     unittest.main()
