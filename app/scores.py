@@ -10,13 +10,21 @@ class Scores:
         self.__high_scores_filename = filename
 
     def __enter__(self):
+        """
+        Contextmanager entry point. Try to load the high scores from
+        a file, but simply fail silently if this doesn't work.
+        """
         try:
             with open(self.__high_scores_filename, 'rb') as f:
                 self.__high_scores = pickle.load(f)
-        except FileNotFoundError:
+        except OSError:
             pass
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, unused_exc_type, unused_exc_val, unused_exc_tb):
+        """
+        Context manager exit point. Try to save the high scores to a
+        file, but simply fail silently if this doesn't work.
+        """
         try:
             with open(self.__high_scores_filename, 'wb') as f:
                 pickle.dump(self.__high_scores, f)
@@ -30,11 +38,15 @@ class Scores:
     def is_high_score(self, score):
         """
         See if the score is a high score. We can use this to first check
-        that a score is a high score and only if that is the case ask for
-        the player's name.
+        that a score is a high score. If this is indeed the case, the
+        program an ask the player for their name.
+
         A score is a high score if we haven't reached the maximum number
-        of high scores (see NUM_HIGH_SCORES) or if the reached score is
-        larger than OR EQUAL TO the lowest score we have.
+        of high scores (see num_high_scores in the constructor) or if the
+        reached score >= the lowest score we have.
+
+        In addition: newer scores will overwrite existing high scores if
+        they have the same score.
 
         :param score: Score to check against high scores.
         :return: True if the score is a high score, False otherwise.
