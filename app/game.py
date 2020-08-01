@@ -52,7 +52,7 @@ class Game:
             else:
                 print("Oops. Your guess is too high! You lose!")
 
-            self.score = self.score // 2  # Only allow integer scores
+            self.score = int(self.score / 1.15)  # Only allow integer scores
 
 
 if __name__ == '__main__':
