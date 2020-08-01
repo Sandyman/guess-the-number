@@ -6,6 +6,8 @@ class Game:
         self.score = 0
 
     def play(self):
+        print("*** Guess the number! ***")
+
         # Create a random secret number between 1 and 100 (inclusive)
         secret_number = random.randint(1, 100)
 
