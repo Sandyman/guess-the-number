@@ -72,6 +72,7 @@ class MyTestCase(unittest.TestCase):
             self.scores.store_high_score(score, name)
 
         self.assertLessEqual(len(self.scores.high_scores), 3)
+        self.assertEqual(_scores[2], self.scores.high_scores[-1])
 
 
 if __name__ == '__main__':
