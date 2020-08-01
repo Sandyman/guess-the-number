@@ -1,9 +1,12 @@
 import random
+import time
 
 
 class Game:
     def __init__(self):
         self.score = 1000
+
+        self.time = int(time.time())
 
     def play(self):
         print("*** Guess the number! ***")
@@ -18,6 +21,10 @@ class Game:
                 exit(0)
 
             guess = int(guess)
+
+            now = int(time.time())
+            self.score -= now - self.time  # Subtract time penalty from score
+            self.time = now
 
             if guess == secret_number:
                 print("You win! Your score is {}.".format(self.score))
