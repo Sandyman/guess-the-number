@@ -1,8 +1,16 @@
 class Scores:
-    def __init__(self, num_high_scores=10):
+    def __init__(self, num_high_scores=10, filename="high_scores.txt"):
         self.__high_scores = []
 
         self.__num_high_scores = num_high_scores
+
+        self.__high_scores_filename = filename
+
+    def __enter__(self):
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
 
     @property
     def high_scores(self):
