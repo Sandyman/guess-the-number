@@ -8,6 +8,15 @@ class Game:
 
         self.time = int(time.time())
 
+    def quit(self):
+        print("Thanks for playing. Bye!")
+        exit(0)
+
+    def calculate_time_penalty(self):
+        now = int(time.time())
+        self.score -= now - self.time  # Subtract time penalty from score
+        self.time = now
+
     def play(self):
         print("*** Guess the number! ***")
 
@@ -17,14 +26,14 @@ class Game:
         while True:
             guess = input("What's your guess? ")
             if guess[0].lower() == 'q':
-                print("Thanks for playing. Bye!")
-                exit(0)
+                self.quit()
 
-            guess = int(guess)
+            try:
+                guess = int(guess)
+            except ValueError:
+                continue
 
-            now = int(time.time())
-            self.score -= now - self.time  # Subtract time penalty from score
-            self.time = now
+            self.calculate_time_penalty()
 
             if guess == secret_number:
                 print("You win! Your score is {}.".format(self.score))
