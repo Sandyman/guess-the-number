@@ -1,7 +1,7 @@
 import pickle
 
 
-class Scores:
+class ListScores:
     def __init__(self, num_high_scores=10, filename="high_scores.dat"):
 
         # A list to hold the actual high scores as (name, score)-tuples

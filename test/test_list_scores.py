@@ -1,11 +1,11 @@
 import unittest
 
-from app.scores import Scores
+from app.list_scores import ListScores
 
 
 class MyTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.scores = Scores(num_high_scores=3)
+        self.scores = ListScores(num_high_scores=3)
 
     def test_high_scores_initially_empty(self):
         self.assertEqual(len(self.scores.high_scores), 0)
